@@ -23,15 +23,16 @@ class UserServiceImplAnnotationTest {
     @Mock
     UserMapper userMapper;
 
+    UserService userService;
+
     @BeforeEach
     void setUp() {
         when(userMapper.selectById("1")).thenReturn(MockUser.getUser());
+        userService = new UserServiceImpl(userMapper);
     }
 
     @Test
     void findUserById() {
-        UserServiceImpl userService = new UserServiceImpl();
-        userService.setUserMapper(userMapper);
         assertThat(userService.findUserById("1")).isEqualTo(MockUser.getUser());
         assertThat(userService.findUserById("99")).isNull();
         verify(userMapper, times(2)).selectById(anyString());

@@ -16,6 +16,7 @@
 
 	<modules>
 		<module>unit-test</module>
+		<module>mybatis</module>
 	</modules>
 
 </project>
